@@ -1,17 +1,17 @@
+import type Metro from '@bycedric/metro/metro';
+import { ReadOnlyGraph } from '@bycedric/metro/metro';
+import Bundler from '@bycedric/metro/metro/Bundler';
+import type { TransformOptions } from '@bycedric/metro/metro/DeltaBundler/Worker';
+import MetroHmrServer from '@bycedric/metro/metro/HmrServer';
+import RevisionNotFoundError from '@bycedric/metro/metro/IncrementalBundler/RevisionNotFoundError';
+import formatBundlingError from '@bycedric/metro/metro/lib/formatBundlingError';
+import { loadConfig, resolveConfig, ConfigT } from '@bycedric/metro/metro-config';
+import { Terminal } from '@bycedric/metro/metro-core';
 import { ExpoConfig, getConfig } from '@expo/config';
 import { getMetroServerRoot } from '@expo/config/paths';
 import { getDefaultConfig, LoadOptions } from '@expo/metro-config';
 import chalk from 'chalk';
 import http from 'http';
-import type Metro from 'metro';
-import { ReadOnlyGraph } from 'metro';
-import Bundler from 'metro/src/Bundler';
-import type { TransformOptions } from 'metro/src/DeltaBundler/Worker';
-import MetroHmrServer from 'metro/src/HmrServer';
-import RevisionNotFoundError from 'metro/src/IncrementalBundler/RevisionNotFoundError';
-import formatBundlingError from 'metro/src/lib/formatBundlingError';
-import { loadConfig, resolveConfig, ConfigT } from 'metro-config';
-import { Terminal } from 'metro-core';
 import util from 'node:util';
 import path from 'path';
 
@@ -310,7 +310,7 @@ export async function instantiateMetroAsync(
     } catch {
       // Add fallback for monorepo tests up until the fork is merged.
       Log.warn('Failed to load HMR serializer from @expo/metro-config, using fallback version.');
-      hmrJSBundle = require('metro/src/DeltaBundler/Serializers/hmrJSBundle');
+      hmrJSBundle = require('@bycedric/metro/DeltaBundler/Serializers/hmrJSBundle');
     }
 
     // Patch HMR Server to send more info to the `_createModuleId` function for deterministic module IDs and add support for serializing HMR updates the same as all other bundles.

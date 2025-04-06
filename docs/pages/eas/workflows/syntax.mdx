@@ -272,21 +272,26 @@ jobs:
         run: yarn --version # should print a concrete version, like 2.4.3
 ```
 
+## `concurrency`
+
+Configuration for concurrency control. Currently only allows setting `cancel_in_progress` for same-branch workflows.
+
+```yaml
+# @info #
+concurrency:
+  cancel_in_progress: true
+  group: ${{ workflow.filename }}-${{ github.ref }}
+# @end #
+```
+
+| Property             | Type      | Description                                                                                                                                              |
+| -------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `cancel_in_progress` | `boolean` | If true, new workflow runs started from GitHub will cancel current in-progress runs for the same branch.                                                 |
+| `group`              | `string`  | We do not support custom concurrency groups yet. Please set this placeholder value so when we do support custom groups your workflow remains compatible. |
+
 ## Control flow
 
 You can control when a job runs with the `needs` and `after` keywords. In addition, you can use the `if` keyword to control whether a job should run based on a condition.
-
-### `jobs.<job_id>.if`
-
-The `if` conditional determines if a job should run. When an `if` condition is met, the job will run. When the condition is not met, the job will be skipped. A skipped job won't have completed successfully and any downstream jobs will not run that have this job in their `needs` list.
-
-```yaml
-jobs:
-  my_job:
-    # @info #
-    if: ${{ github.ref_name == 'main' }}
-    # @end #
-```
 
 ### `jobs.<job_id>.needs`
 
@@ -326,22 +331,17 @@ jobs:
     # @end #
 ```
 
-### `concurrency`
+### `jobs.<job_id>.if`
 
-Configuration for concurrency control. Currently only allows setting `cancel_in_progress` for same-branch workflows.
+The `if` conditional determines if a job should run. When an `if` condition is met, the job will run. When the condition is not met, the job will be skipped. A skipped job won't have completed successfully and any downstream jobs will not run that have this job in their `needs` list.
 
 ```yaml
-# @info #
-concurrency:
-  cancel_in_progress: true
-  group: ${{ workflow.filename }}-${{ github.ref }}
-# @end #
+jobs:
+  my_job:
+    # @info #
+    if: ${{ github.ref_name == 'main' }}
+    # @end #
 ```
-
-| Property             | Type      | Description                                                                                                                                              |
-| -------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `cancel_in_progress` | `boolean` | If true, new workflow runs started from GitHub will cancel current in-progress runs for the same branch.                                                 |
-| `group`              | `string`  | We do not support custom concurrency groups yet. Please set this placeholder value so when we do support custom groups your workflow remains compatible. |
 
 ## Interpolation
 

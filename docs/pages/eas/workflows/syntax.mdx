@@ -233,17 +233,17 @@ Default working directory to run the scripts in. Relative paths like "./assets" 
 
 Specific versions of tools that should be used for jobs defined in this workflow configuration. Follow each tool's documentation for available values.
 
-| Tool        | Description                                                                |
-| ----------- | -------------------------------------------------------------------------- |
-| `node`      | Version of Node.js installed via `nvm`.                                    |
-| `yarn`      | Version of Yarn installed via `npm -g`.                                    |
-| `corepack`  | If set to `true`, [corepack](https://nodejs.org/api/corepack.html) will be enabled at the beginning of build process. Defaults to false.                                                |
-| `pnpm`      | Version of pnpm installed via `npm -g`.                                    |
-| `bun`       | Version of Bun installed by passing `bun-v$VERSION` to Bun install script. |
-| `ndk`       | Version of Android NDK installed through `sdkmanager`.                     |
-| `bundler`   | Version of Bundler that will be passed to `gem install -v`.                |
-| `fastlane`  | Version of fastlane that will be passed to `gem install -v`.               |
-| `cocoapods` | Version of CocoaPods that will be passed to `gem install -v`.              |
+| Tool        | Description                                                                                                                              |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `node`      | Version of Node.js installed via `nvm`.                                                                                                  |
+| `yarn`      | Version of Yarn installed via `npm -g`.                                                                                                  |
+| `corepack`  | If set to `true`, [corepack](https://nodejs.org/api/corepack.html) will be enabled at the beginning of build process. Defaults to false. |
+| `pnpm`      | Version of pnpm installed via `npm -g`.                                                                                                  |
+| `bun`       | Version of Bun installed by passing `bun-v$VERSION` to Bun install script.                                                               |
+| `ndk`       | Version of Android NDK installed through `sdkmanager`.                                                                                   |
+| `bundler`   | Version of Bundler that will be passed to `gem install -v`.                                                                              |
+| `fastlane`  | Version of fastlane that will be passed to `gem install -v`.                                                                             |
+| `cocoapods` | Version of CocoaPods that will be passed to `gem install -v`.                                                                            |
 
 Example of workflow using `defaults.tools`:
 
@@ -284,9 +284,9 @@ concurrency:
 # @end #
 ```
 
-| Property             | Type      | Description                                                                                                                                              |
-| -------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `cancel_in_progress` | `boolean` | If true, new workflow runs started from GitHub will cancel current in-progress runs for the same branch.                                                 |
+| Property             | Type      | Description                                                                                                                                             |
+| -------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `cancel_in_progress` | `boolean` | If true, new workflow runs started from GitHub will cancel current in-progress runs for the same branch.                                                |
 | `group`              | `string`  | We do not support custom concurrency groups yet. Set this placeholder value so that when we do support custom groups, your workflow remains compatible. |
 
 ## Control flow

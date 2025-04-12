@@ -34,8 +34,8 @@ const picomatch = require('picomatch');
   // Don't bother running the paths check unless this is a pull request workflow
   const github_event_name = args.shift() as unknown as string;
   if (!isPullRequestWorkflow(github_event_name)) {
-    console.log(`didChange: false`);
-    await setOutput('result', 'false');
+    console.log(`didChange: true`);
+    await setOutput('result', 'true');
     return;
   }
 
